@@ -1,0 +1,15 @@
+const express = require('express')
+const cors = require('cors')
+require('dotenv').config()
+const PORT = process.env.API_PORT
+const app = express()
+const bodyParser = require('body-parser')
+const router = require('./routes')
+const _connect = require('./config/_connect')
+_connect()
+app.use(cors('*'))
+app.use(bodyParser.json())
+app.use('/api/users', router)
+app.listen(PORT, () => {
+  console.log('listening on port ' + PORT)
+})
