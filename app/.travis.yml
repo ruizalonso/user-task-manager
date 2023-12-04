@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "18"
+
+services:
+  - mongodb
+
+env:
+  global:
+    - MONGODB_URI=mongodb://mongo:27017/db_tasks?directConnection=true&retryWrites=true&w=majority
+
+before_install:
+  - npm install -g npm@latest  # Nos aseguramos de tener la última versión de npm
+
+install:
+  - npm install # Instalamos dependencia del proyecto
+
+script:
+  - npm test  # Ejecuta tus pruebas, si las hay
